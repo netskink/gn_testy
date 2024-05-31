@@ -1,0 +1,4 @@
+
+
+# dotenv allows .env file in current dir
+python-dotenv
