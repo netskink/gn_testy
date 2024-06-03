@@ -3,6 +3,7 @@ src/venv/*
 .env
 gn
 src/*/out/*
+.DS_Store
 
 
 

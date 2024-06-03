@@ -1,0 +1,16 @@
+executable("main") {
+  sources = [ 
+    "src/main.cc" 
+  ]
+
+  deps = [
+    ":mymath"
+  ]
+}
+
+static_library("mymath") {
+  sources = [ 
+    "src/MyMath.cc",
+    "src/MyMath.h" 
+  ]
+}
