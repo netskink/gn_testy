@@ -77,3 +77,53 @@ ninja: Entering directory `out'
 ninja: no work to do.
 $
 ```
+
+### Important Files
+
+* .gn
+	```
+	# The location of the build configuration file.
+    buildconfig = "//build/BUILDCONFIG.gn"
+	```
+	- This file identifies the top level of the gn/ninja build system
+	- The contents of this file specifies the `build` dir containing the configs file.
+		- Once `gn gen` is run:
+		- build/toolchain/BUILD.gn
+		- build/BUILD.gn
+		- build/BUILDCONFIG.gn
+* BUILD.gn
+
+### Important Commands
+
+* `gn clean out`
+	- This cleans out the results of the ninja build. ie. *.o, *.a, *.so, etc.
+	- It does not clean out/*.gn files.
+* `gn ls <build_dir> <target_wildcard>`
+	- Lists all the targets
+	- `gn ls out/ "//*"`
+		* `//:main`
+		* `//:mymath`
+		* `//:mystring`
+* `gn desc <build_dir> <target_name>`
+	- Describes target for example provides
+		* sources
+		* Type of target. eg. executable, shared library or static library.
+		* direct dependencies
+	- `gn desc out/ "//:main"`
+* `gn desc <build_dir> <target_name> deps --tree`
+	- `gn desc out //:main deps --tree`
+    - lists depends tree
+	- `gn desc out/ "//:main"` deps --tree
+* `gn args out`
+    - opens an editor to override the default
+* `gn args --list out`
+    - shows all the args, default values and their documentation
+
+
+
+
+
+
+
+
+
