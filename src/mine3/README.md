@@ -1,7 +1,7 @@
-
 # Purpose
 
-This example builds a simple executable.
+This example builds a executable with a static library and
+a shared library (*.so).
 
 
 

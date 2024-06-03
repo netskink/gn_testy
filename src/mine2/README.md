@@ -1,3 +1,9 @@
+# Purpose
+
+This example builds a executable with a static library.
+
+
+
 # usage
 
 ```

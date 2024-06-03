@@ -1,0 +1,30 @@
+executable("main") {
+  sources = [ 
+    "src/main.cc" 
+  ]
+
+  deps = [
+    ":mymath",
+    ":mystring"
+  ]
+}
+
+# this makes a static library
+# libmymath.a file
+static_library("mymath") {
+  sources = [ 
+    "src/MyMath.cc",
+    "src/MyMath.h" 
+  ]
+}
+
+# this makes a dynamic library
+# libmystring.so file
+shared_library("mystring") {
+  sources = [ 
+    "src/MyString.cc",
+    "src/MyString.h" 
+  ]
+
+  defines = [ "MYSTRING_IMPLEMENTATION"]
+}

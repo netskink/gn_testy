@@ -8,6 +8,7 @@ executable("main") {
   ]
 }
 
+# this makes a libmymath.a file
 static_library("mymath") {
   sources = [ 
     "src/MyMath.cc",
