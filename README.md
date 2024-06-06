@@ -1,9 +1,14 @@
 # gn_testy
 
-
 Experiments with gn (generate ninja)
 
 ## Notes
+
+* mailing list
+	- gn-dev@chromium.org
+* [git](https://gn.googlesource.com)
+* [consolidated help](./gn/docs/reference.md)
+	- above link assumes you have git cloned gn 
 
 ### gn and ninja files
 
@@ -118,8 +123,58 @@ $
     - opens an editor to override the default
 * `gn args --list out`
     - shows all the args, default values and their documentation
+* `gn analyze <out_dir> <input_path> <output_path>`
+	- analyze which targets are affected by a list of files
+	- If the input/output paths are `-`, then it
+	uses stdin/stdout.
+	- While helpfull, this is a bit tricky to use.
+	- Here is a sample in.json
+	```
+	{
+		"files":[
+			"//src/xmain.cc",
+			"//src/xMyString.cc",
+			"//src/xMyMath.cc"
+		],
+		"test_targets":[
+			"//:mystring"
+		]
+	}
+	```
+	- In this case, I want to find if the specified files are required to build the `mystring` library.  Since these are typos of the various
+	source files, the analyze will say there is no dependency.
+	```
+	$ gn analyze out in.json  -
+	{"compile_targets":[],"status":"No dependency","test_targets":[]}
+	```
+	- If the sample json file is corrected to have
+	the proper filenames, then the output is:
+	```
+	$ gn analyze out in.json  -
+	{"compile_targets":[],"status":"Found dependency","test_targets":["//:mystring"]}
+	```
+* `gn outputs <out_dir> <list of target or file names>`
+	- 
 
 
+### Important Target Declarations
+
+These are common declarations used in `BUILD.gn`
+
+* executable
+	- Declare an executable target
+	- Tools and commands used to create this target are determined by the source files in its sources.
+	- C/C++ are allowed, but C and Rust are not.
+* shared_library
+	- Declare a shared library target
+* static_library
+	- Declare a static library target
+* group
+	- Declare a named group of targets
+* loadable_module
+	- Declare a loadable module target
+* target
+	- Declare a target with specified programmatic type
 
 
 

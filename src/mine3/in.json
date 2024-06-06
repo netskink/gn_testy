@@ -1,0 +1,12 @@
+{
+    "files":[
+        "//src/main.cc",
+        "//src/MyString.cc",
+        "//src/MyMath.cc"
+    ],
+    "test_targets":[
+        "//:mystring"
+    ]
+}
+
+
