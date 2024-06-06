@@ -2,13 +2,22 @@
 
 Experiments with gn (generate ninja)
 
+### Credits
+Some of this contact is directly lifted from original sources, but ideally its a rewrite of notes.  See the following URLS
+
+* [quickstart](https://gn.googlesource.com/gn/+/main/docs/quick_start.md)
+* [Using GN build presentation](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://docs.google.com/presentation/d/15Zwb53JcncHfEwHpnG_PoIbbzQ3GQi_cpujYwbpcbZo/htmlpresent&ved=2ahUKEwiew7Xw9rCGAxWtF2IAHZxWBxs4ChAWegQIChAB&usg=AOvVaw2juFw165sTXsAIj_l_fJ0a)
+* [gn cookbook](https://chromium.googlesource.com/chromium/src/tools/gn/+/48062805e19b4697c5fbd926dc649c78b6aaa138/docs/cookbook.md)
+* [chrome cookbook](https://www.chromium.org/chromium-os/developer-library/guides/documentation/chromium-cookbook/)
+
+
 ## Notes
 
 * mailing list
 	- gn-dev@chromium.org
 * [git](https://gn.googlesource.com)
 * [consolidated help](./gn/docs/reference.md)
-	- above link assumes you have git cloned gn 
+	- above link assumes you have git cloned gn in this repo
 
 ### gn and ninja files
 
@@ -167,14 +176,47 @@ These are common declarations used in `BUILD.gn`
 	- C/C++ are allowed, but C and Rust are not.
 * shared_library
 	- Declare a shared library target
+	- makes a `.so` file.
+	- A shared library will be specified on the linker line for targets listing the shared library in it its "deps".
+	- On osx use "loadable_module" instead.
 * static_library
 	- Declare a static library target
+	- makes a `.a` or a `.lib` file.
+	- If you want to skip the `.a`, but want intermediate results consider a `source set` instead.
 * group
 	- Declare a named group of targets
+	- This target type creates meta-targets that just collect a set of dependencies into one named target.  
+	- Groups can additionally specify configs that apply to their dependents.
+	- Example
+	```
+	group("all") {
+		deps = [
+		"//project:runner",
+		"//project:unit_tests",
+		]   
+  	}
+	```
 * loadable_module
 	- Declare a loadable module target
+	- Creates an object file that is (and can only be) loaded and unloaded at runtime.
+	- If you don't want this (if you don't need to dynamically load the library at runtime), then you should use a "shared_library" target type instead.  (What?)
+	- The style guide has more info on this relative to plaforms linux, windows and osx.  See [here](https://gn.googlesource.com/gn/+/main/docs/style_guide.md#loadable-modules-versus-shared-libraries)
 * target
 	- Declare a target with specified programmatic type
+	- The target() function is a way to invoke a built-in target or template with a type determined at runtime.  This is useful for cases where the type of a target type might not be known statically.
+	- Only templates and built-in target functions are supported for the target type string parameter.  Arbitrary functions, configs and toolchains are not supported.
+	- signature:
+	```
+	target(target_type string, target_name string) { ... }
+	```
+	- Equvalent Example
+	```
+	target("source_set", "doom_melon") {...}
+	```
+	=
+	```
+	source_set("doom_melon") {...}
+	```
 
 
 
