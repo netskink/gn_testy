@@ -2,10 +2,11 @@ executable("main") {
   sources = [ 
     "src/main.cc" 
   ]
-
+# this connects the executable to the two
+# library targets
   deps = [
-    ":mymath",
-    ":mystring"
+    ":mymath",  # shorthand notation
+    "//:mystring" # explicit long hand notation
   ]
 }
 
