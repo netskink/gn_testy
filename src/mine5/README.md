@@ -1,8 +1,10 @@
 # Purpose
 
-This example builds a executable with a static library and
-a shared library (*.so).  It adds a slight tweak in that
-the libs are in subdirs.
+This example builds a executable with 
+* a static library 
+* a shared library (*.so)
+* the libs are in a subdir
+* it adds a .so rename option
 
 
 

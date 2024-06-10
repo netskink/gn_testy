@@ -1,0 +1,13 @@
+# this makes a dynamic library
+# libmystring.so file
+shared_library("mystring") {
+  sources = [ 
+    "MyString.cc",
+    "MyString.h" 
+  ]
+
+  output_extension = ""
+  output_prefix_override = true
+
+  defines = [ "MYSTRING_IMPLEMENTATION"]
+}

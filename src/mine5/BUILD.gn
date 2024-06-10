@@ -5,8 +5,7 @@ executable("main") {
 # this connects the executable to the two
 # library targets
   deps = [
-    #"src/mymath:mymath",  # shorthand notation
-    "//src/mymath:mymath",  # shorthand notation
+    "src/mymath:mymath",  # shorthand notation
     "//src/mystring:mystring" # explicit long hand notation
   ]
 
@@ -14,4 +13,5 @@ executable("main") {
     "//src/mymath",
     "//src/mystring"
   ]
+    
 }
