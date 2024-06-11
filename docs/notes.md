@@ -24,5 +24,17 @@ to build even after dorking with the python files to accept current versions of 
 	* . ./bin/setenv.sh
 	
 
+# ldd on osx
 
+```
+$ otool -L <exe_name>
+```
+
+# ldd on USS
+
+NOTE: the space before `LISTLOAD`
+
+```
+$ echo " LISTLOAD" | amblist ../../../dynamic_build/out/zos_s390x.release/d8 | grep lib.*\.so
+```
 
