@@ -1,0 +1,19 @@
+# this makes an executable named testy
+executable("testy") {
+  sources = [ 
+    "Testy.cc",
+  ]
+
+  # library targets
+  # Specify from top-level to drill down.
+  # These require the // to go up to top.
+  deps = [
+    "//src/mymath:mymath",  
+    "//src/mystring:mystring" 
+  ]
+    
+  configs += [ "//:myconfig" ]
+
+}
+
+
