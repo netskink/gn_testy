@@ -1,0 +1,22 @@
+executable("main") {
+  sources = [ 
+    "src/main.cc" 
+  ]
+# this connects the executable to the two
+# library targets
+  deps = [
+    "src/mymath:mymath",  # shorthand notation
+    "//src/mystring:mystring" # explicit long hand notation
+  ]
+
+  include_dirs = [
+    "//src/mymath",
+    "//src/mystring"
+  ]
+    
+  configs += [ ":myconfig" ]
+}
+
+config("myconfig") {
+  defines = [ "VERBOSE=1" ]
+}

@@ -263,6 +263,36 @@ NOTE: Targets chain dependecies on other targets using the `deps` directive.
 	```
 	source_set("doom_melon") {...}
 	```
+### Important Target Variables
+
+* compiler configuration settings
+	* include_dirs
+		- When a subdir contains a library which is specified as a dependency, the subdir does not appear to be included.  In this case, specify this option to locate the headers.  See example `mine4`.
+		```
+		include_dirs = [ "//src/mymath" ]
+		```
+	* cflags
+		- Flags for the compiler
+		```
+		cflags = [ "-Wall" ]
+		```
+	* defines
+		- Preprocessor defines to steer `#ifdef`s
+		```
+		defines = [ "FOO=BAR" ]
+		```
+	* config
+		- Can group all configs for reuse in multiple targets
+		```
+		config("myconfig") {
+			include_dirs = [ "//src/mymath" ]
+			cflags = [ "-Wall" ]
+			defines = [ "FOO=BAR" ]
+		}
+		```
+
+
+
 
 
 ### Important config directives
@@ -331,4 +361,51 @@ shared_library("mystring") {
 
 The words, "main", "mymath", etc in the target directives are termed `labels`.  The ":" is a shorthand method.  The full name is specified using a `"\\"` syntax to signify the top level directory with interleaving `"\"` to denote sub-directories.
 
-If the source was in a sub-directory then the "\" would comet into play.
+If the source was in a sub-directory then the "\" would comes into play.
+
+
+Regarding dependencies.  It appears that specifying a dependency on a target in 
+a subdir does not add that subdir to the list of includes.  This is demonstrasted in
+examples `mine4` and onward.  Without the `include_dirs` directive, `gn gen` will work, but
+the compile via `ninja -C out` will fail because it can not locate the header files.
+
+
+#### From the Brett Wilson presentation
+
+##### Full Label
+
+```
+//chrome/browser:version
+```
+
+Looks for "version" in `chrome/browser/BUILD.gn`
+
+##### Implicit name
+
+```
+//base
+```
+
+Shorthand for `//base:base`
+
+##### In Current file
+
+```
+:baz
+```
+
+Shorthand for `baz` in current file.
+
+```
+//:baz
+```
+
+Specifies a label (baz) in top level.  Useful for a BUILD.gn in a subdir.
+
+```
+//foo:bar
+```
+
+Specifies a label (bar) in a subdir named foo.
+
+Example src/mine7 demos usage of configs and labels.

@@ -1,0 +1,11 @@
+# this makes a dynamic library
+# libmystring.so file
+shared_library("mystring") {
+  sources = [ 
+    "MyString.cc",
+    "MyString.h" 
+  ]
+
+  configs += [ "//:myconfig" ]
+
+}

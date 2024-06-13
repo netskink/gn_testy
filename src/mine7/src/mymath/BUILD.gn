@@ -1,0 +1,9 @@
+# this makes a static library
+# libmymath.a file
+static_library("mymath") {
+  sources = [ 
+    "MyMath.cc",
+    "MyMath.h" 
+  ]
+  configs += [ "//:myconfig" ]
+}
