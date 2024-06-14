@@ -1,0 +1,43 @@
+
+
+
+
+
+executable("main") {
+  sources = [ 
+    "src/main.c" 
+  ]
+    
+  deps = [
+    "//src/mymath:mymath",
+    "//src/mystring:mystring" 
+  ]
+
+  configs += [ 
+    ":myconfig"  # This refers to target in this same file
+  ]
+}
+
+
+# this is like a make all target. 
+# this will setup at this level to build
+# an executable in the src subdirectory
+group("all") {
+  deps = [
+    ":main",  # shorthand to refer to target in this file
+    "//src/test:testy" # target in subdirs
+  ]
+}
+
+
+# Note the config can be put here
+# after the config is referenced at top.
+# ie. order does not matter.
+config("myconfig") {
+  defines = [ "VERBOSE=1" ]
+
+  include_dirs = [
+    "//src/mymath",
+    "//src/mystring"
+  ]
+}
