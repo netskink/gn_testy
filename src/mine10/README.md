@@ -1,6 +1,7 @@
 # Purpose
 
-This example builds a executable with two different compilers.
+This example builds a executable with two different compilers.  It also
+demos code that requires c++ 23.
 
 
 

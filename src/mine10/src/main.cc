@@ -4,12 +4,15 @@
 
 #include <iostream>
 #include <tuple>
-#include <algorithm>  // c++98 swap is here
 #include <utility>    // c++11 forward swap is here
+//#include <algorithm>  // c++98 swap is here
 
 using namespace std;
 
 // this requires c++11
+//
+// This code is from Simon Toth daily bite of c++
+// medium article.
 std::pair<double,int> fun() { return {4.2, 42}; }
 
 struct Coord {
