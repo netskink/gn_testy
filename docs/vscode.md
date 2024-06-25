@@ -22,3 +22,12 @@
 	- allows diffs of folders
 	- https://github.com/l13/vscode-diff
 
+## notes on launch and tasks json files
+
+tips:
+
+* `pwd` is helpful.  
+* Args need to be a single string with no spaces, otherwise it will add a leading space.
+	- ie instead of "-C out" do "-C" and "out".
+* when building a command, it seems you need to have an args clause in tasks.json.
+

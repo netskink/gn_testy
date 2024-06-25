@@ -9,6 +9,9 @@
 
 using namespace std;
 
+
+#define thomas 1
+#ifdef thomas
 // this requires c++11
 //
 // This code is from Simon Toth daily bite of c++
@@ -26,12 +29,13 @@ struct Coord {
     bool operator==(const Coord& other) const {
         return std::tie(x, y) == std::tie(other.x, other.y);
     }
-    // This swap code fails to build with the c++std17
+    // This swap code requires stdC++23 aka -std=C++2b
     friend void swap(Coord& l, Coord& r) {
         std::swap(std::tie(l.x, l.y), std::tie(r.x, r.y));
     }
 };
 
+#endif
 
 int main(int argc, char* argv[]) {
 
@@ -39,11 +43,9 @@ int main(int argc, char* argv[]) {
   printf("== main() ===\n");
 #endif
 
-  // Hmm. I expected this code to build with clang and it using
-  // the stdc++=20 flag and not with the default gcc config
-  // but it built with both compiler specifications.
+  // Does not build with default setting. ie not 17, not 20 etc.
   cout << "This code requires c++ std20" << endl;
-  // EX4 - use of std::size requires -std=c++20
+  // EX4 - use of std::size requires -std=c++17
   float student_scores[] = {2.3, 4.1, 7.9, 8.2, 6.4};
   cout << "Size of array: " << std::size(student_scores) << endl;
   for (int i = 0; i < std::size(student_scores); i++) {
@@ -58,7 +60,7 @@ int main(int argc, char* argv[]) {
     //
     // This code fails to build when using the gcc clone.
 
-
+#ifdef thomas
 
     int x{};
     const double y{};
@@ -94,7 +96,7 @@ int main(int argc, char* argv[]) {
     // (a < b) == true, (a == b) == false
     swap(a, b);
     // a == {1, 2}, b == {1, 1}
-
+#endif
 
 
 
