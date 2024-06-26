@@ -14,6 +14,7 @@ class CSV {
 		int split();
 		int endofline(char c);
 
+
 	private:
 		std::istream& fin; // input file pointer
 		std::string fieldsep;  // separator characters

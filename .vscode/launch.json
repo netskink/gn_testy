@@ -5,14 +5,23 @@
 	"version": "0.2.0",
 	"configurations": [
 	  {
-		"name": "clang++ - Build and debug active file",
+		"name": "clang++ - Build and debug gn ninja project",
 		"type": "lldb",
 		"request": "launch",
-		"program": "${fileDirname}/../out/${fileBasenameNoExtension}",
-		//"args": ["< ../out/data.csv"],
-		"args": [],
+		// If the active file is main.cc, this will attempt to run main.
+		// If the active file is foo.cc which is built with main.cc, 
+		// then this will attempt to run foo.cc which is a problem.
+		//"program": "${fileDirname}/../out/${fileBasenameNoExtension}",
+		// This will always run an exe named main in the out/ dir.
+		"program": "${fileDirname}/../out/main",
+		// The args are to the program.  They are not processed by the 
+		// shell beforehand.  So, something like < foo.txt will appear
+		// to the exec as "< foo.txt" and not the contents of foo.txt.
+		"args": [
+			"${fileDirname}/../data/data.csv"
+		],
 		"cwd": "${workspaceFolder}",
-		"preLaunchTask": "C/C++: clang++ build active file",
+		"preLaunchTask": "C/C++:clang gn build active file",
 		"stopOnEntry": false,
 	  }
 	]

@@ -6,7 +6,8 @@
 // sample code.
 // 
 
-#include <iostream>
+#include <iostream>  // if you want to use stdin like original example
+#include <fstream>  // if you want to read from a file
 #include <string>
 #include <vector>
 #include <algorithm>  // 
@@ -19,12 +20,25 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
   string line;
-  CSV csv;
+
+ 
+
 
 #ifdef VERBOSE
-
   cout << "== main() ===" << endl;
 #endif
+
+  // no need for elaborate checks, this is just a hack demo
+  cout << "argc: " << argc << endl;
+  cout << "argv[0]: " << argv[0] << endl;  // ./out/main
+  cout << "argv[1]: " << argv[1] << endl;  // data/data.csv
+
+  ifstream file(argv[1]);
+   if (!file.is_open()) {
+    cerr << "Failed to open the input file."  << endl;
+    return 1;
+   }
+  CSV csv(file);
 
   some_func();
 

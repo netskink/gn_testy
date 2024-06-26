@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "C/C++: clang++ build active file",
+			"label": "C/C++:clang gn build active file",
 			"command": "/opt/homebrew/bin/ninja",
 			"args": [
 				"-v",
