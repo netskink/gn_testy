@@ -1,19 +1,22 @@
-
-
-     
  
 executable("main") {
   sources = [ 
     "src/main.cc",
     "src/csv.cc" 
   ]
-    
+
+
+  # this is revealed via:
+  # $ gn desc out //:main --all runtime_deps  
+  data = [
+    "data/data.csv"
+  ]
+
+
   configs += [ 
     ":myconfig"  # This refers to target in this same file
   ]
 }
-
-
 
 
 # Note the config can be put here

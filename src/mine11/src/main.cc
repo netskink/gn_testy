@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
   string line;
 
  
-
+ 
 
 #ifdef VERBOSE
   cout << "== main() ===" << endl;
@@ -40,10 +40,16 @@ int main(int argc, char* argv[]) {
    }
   CSV csv(file);
 
-  some_func();
 
+  // read from the file handle, line by line
+  int line_num = 0;
   while(csv.getline(line) != 0) {
-    cout << "line: " << line << endl;
+    //cout << "line: " << line << endl;
+    for (int i = 0; i < csv.getnfield(); i++) {
+      cout << "line[" << line_num << "]: ";
+      cout << "filed[" << i << "]: '" << csv.getfield(i) << "'\n";
+    }
+    line_num++;
   }
 
   return 0;

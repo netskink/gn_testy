@@ -21,6 +21,29 @@ $ ./out/main
 $ ninja -v -C out -t clean
 ```
 
+# To get a description of the main executable
+
+This shows what configs are in play, what the output is named, flags
+used by the compiler, etc.
+
+```
+$ gn desc out //:main 
+```
+
+This variant will reveal that at runtime, it uses the `data/data.csv`
+file.
+
+```
+$ gn desc out //:main runtime_deps
+main
+../data/data.csv
+```
+
+The reason it prefixes the leading double dots, is because the gn command is run
+from the out subdirectory and that is where it finds `main` executable and
+relative to there is the `data` directory.
+
+
 # Notes
 
 
