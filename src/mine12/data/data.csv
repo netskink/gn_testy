@@ -1,0 +1,6 @@
+"shape","num_sides","max_angle"
+"square",4,90
+"triangle",3,179
+"circle",1,180
+"rectangle",4,90
+"diamond",4,89

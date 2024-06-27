@@ -1,0 +1,14 @@
+
+# makes a dynamic library
+# libcsv.so
+shared_library("csv") {
+
+  sources = [ 
+    "//src/CSV/csv.cc",
+    "//src/CSV/csv.h" 
+  ]
+
+  configs += [ 
+    "//:myconfig"  # This refers to target in this same file
+  ]
+}

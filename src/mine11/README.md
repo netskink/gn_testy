@@ -3,6 +3,15 @@
 This demos the use of a file used as input during runtime.
 
 
+See also:
+
+```
+$ gn help runtime_deps
+$ gn help deps
+$ gn help data
+```
+
+See below on the desc notes.
 
 
 # usage
@@ -42,6 +51,7 @@ main
 The reason it prefixes the leading double dots, is because the gn command is run
 from the out subdirectory and that is where it finds `main` executable and
 relative to there is the `data` directory.
+
 
 
 # Notes

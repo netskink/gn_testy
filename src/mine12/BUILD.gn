@@ -1,0 +1,34 @@
+ 
+executable("main") {
+  sources = [ 
+    "src/main.cc",
+  ]
+
+  deps = [
+    "//src/CSV/:csv"
+  ]
+
+  include_dirs = [
+    "//src/CSV"
+  ]
+
+
+  # this is revealed via:
+  # $ gn desc out //:main --all runtime_deps  
+  data = [
+    "data/data.csv"
+  ]
+
+
+  configs += [ 
+    ":myconfig"  # This refers to target in this same file
+  ]
+}
+
+
+# Note the config can be put here
+# after the config is referenced at top.
+# ie. order does not matter.
+config("myconfig") {
+  defines = [ "VERBOSE=1" ]
+}
