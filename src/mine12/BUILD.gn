@@ -23,6 +23,9 @@ executable("main") {
   configs += [ 
     ":myconfig"  # This refers to target in this same file
   ]
+
+  # print the configs used to build this executable
+  #print(configs)
 }
 
 

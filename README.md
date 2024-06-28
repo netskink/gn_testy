@@ -105,6 +105,7 @@ $
 		- build/toolchain/BUILD.gn
 		- build/BUILD.gn
 		- build/BUILDCONFIG.gn
+			- Variables in this file are global to all build files.
 	- 
 	- see `gn help dotfile`
 * BUILD.gn

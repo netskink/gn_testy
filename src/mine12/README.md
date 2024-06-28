@@ -123,6 +123,48 @@ $ gn refs out //build:jfd_compiler_config
 //src/CSV:csv
 ```
 
+See the mine12/BUILD.gn file for an example of where the print function
+is used to dump the config variables for the main executable.
+
+```
+$ gn gen out
+["//build:compiler_defaults", "//build:jfd_compiler_config", "//build:executable_ldconfig", ":myconfig"]
+```
+
+Note if you add the -v flag, it shows that after loading //BUILD.gn, it shows this same output as it
+prints `Running //BUILD.gn with toolchain //build/toolchain:clang`
+
+```
+gn gen -v out
+Using source root /Users/davis/progs/github/gn_testy/src/mine12
+Got dotfile /Users/davis/progs/github/gn_testy/src/mine12/.gn
+Using build dir //out/
+Loading //build/BUILDCONFIG.gn
+Loading //BUILD.gn
+Running["//build:compiler_defaults", "//build:jfd_compiler_config", "//build:executable_ldconfig", ":myconfig"]
+ //BUILD.gn with toolchain //build/toolchain:clang
+Defining target //:main(//build/toolchain:clang)
+Defining config //:myconfig(//build/toolchain:clang)
+Loading //build/BUILD.gn (referenced from //build/BUILDCONFIG.gn:22)
+Loading //build/toolchain/BUILD.gn (referenced from //BUILD.gn:2)
+Loading //src/CSV/BUILD.gn (referenced from //BUILD.gn:8)
+Running //build/BUILD.gn with toolchain //build/toolchain:clang
+Defining config //build:compiler_defaults(//build/toolchain:clang)
+Defining config //build:executable_ldconfig(//build/toolchain:clang)
+Defining config //build:jfd_compiler_config(//build/toolchain:clang)
+Running //src/CSV/BUILD.gn with toolchain //build/toolchain:clang
+Defining target //src/CSV:csv(//build/toolchain:clang)
+Running //build/toolchain/BUILD.gn with toolchain //build/toolchain:clang
+Defining toolchain //build/toolchain:gcc
+Defining toolchain //build/toolchain:clang
+Computing //src/CSV:csv(//build/toolchain:clang)
+Computing //:main(//build/toolchain:clang)
+Build graph constructed in 5ms
+Done. Made 2 targets from 5 files in 14ms
+```
+
+
+
 ## file
 ```
 $ gn refs out //src/CSV:csv.h
@@ -140,6 +182,9 @@ The input matches no targets, configs, or files
 ```
 $ gn check out
 ```
+
+This scans source files and verifies that mentioned include files
+are present.
 
 # Large Codebase techniques
 
