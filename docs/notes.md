@@ -8,6 +8,7 @@ to build even after dorking with the python files to accept current versions of 
 
 [Here](https://gn.googlesource.com/gn/) is the official repo.
 
+[fuchsia gn ref](https://fuchsia.dev/fuchsia-src/development/build/build_system/intro)
 
 # installation of gn 
 
