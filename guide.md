@@ -450,6 +450,13 @@ Specifies a label (bar) in a subdir named foo.
 
 Example src/mine7 demos usage of configs and labels.
 
+#### Summary
+
+* label is `directory:name` where directory is a source path containing a `build.gn` file with a label specified by name.
+* shorthand `directory" will refer to a label name corresponding to the same name as the directory.
+	- `//foo/goo`
+		* Looks for label `goo` in directory/file `foo/goo/build.gn`
+
 ## apple clang
 
 This code can be switched to use native clang or the gcc clang clone.  Change the comment in `build/BUILDCONFIG.gn`.
